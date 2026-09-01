@@ -11,3 +11,6 @@ fastify.listen({ port }, function (err, address) {
 
   fastify.log.info(`server listening on ${address}`);
 });
+
+console.log(process.version);
+console.log(process.env.NODE_ENV);
