@@ -1,6 +1,7 @@
 import { buildApplication } from "./application.js";
+import { auth } from "./lib/auth/auth.js";
 
-const fastify = buildApplication();
+const fastify = buildApplication(auth);
 const port = 3000;
 
 fastify.listen({ port }, function (err, address) {

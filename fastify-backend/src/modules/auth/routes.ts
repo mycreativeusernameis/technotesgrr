@@ -1,10 +1,15 @@
 import type { FastifyInstance } from "fastify";
-import { authController } from "./controller.js";
+import { createAuthController } from "./controller.js";
+import type { AuthInstance } from "../../lib/auth/auth.js";
 
-export default async function authRoutes(fastify: FastifyInstance) {
-  fastify.route({
-    method: ["GET", "POST"],
-    url: "/*",
-    handler: authController,
-  });
+export function createAuthRoutes(auth: AuthInstance) {
+  const authController = createAuthController(auth);
+
+  return async function authRoutes(fastify: FastifyInstance) {
+    fastify.route({
+      method: ["GET", "POST"],
+      url: "/*",
+      handler: authController,
+    });
+  };
 }
